@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title> Fascinating Shopping </title>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="holding-bag">
+	<div id="handle">
+	</div>
+	<div class="shopping-list">
+		<div class="row item">
+			<div class="column checkbox first-column">
+				<input type="checkbox" name="gotit" />
+			</div>
+			<div class="column item">
+				<input name="item" type="text" value="Milk">
+			</div>
+			<div class="column quantity">
+				<input name="quantity" type="number" value="1" min="0" max="99" size="3" />
+			</div>
+			<div class="column add-to-common">
+				<button name="add-to-common" type="button"> Bookmark </button> 
+			</div>
+			<div class="column delete .btn">
+				<button name="remove" type="button" class=".btn"> Remove </button> 
+			</div>
+		</div>
+		<div class="row item">
+			<div class="column checkbox first-column">
+				<input type="checkbox" name="gotit" checked="checked">
+			</div>
+			<div class="column item">
+				<input name="item" type="text" value="Grapes">
+			</div>
+			<div class="column quantity">
+				<input name="quantity" type="number" value="2" min="0" max="99" size="3" >
+			</div>
+			<div class="column add-to-common">
+				<button name="add-to-common" type="button"> Bookmark </button> 
+			</div>
+			<div class="column delete">
+				<button name="remove" type="button"> Remove </button> 
+			</div>
+		</div>
+	</div>
+	<div class="add-to-shopping-list">
+		<div class="row add-item">
+			<div class="column first-column add-item-label">
+				+> 
+			</div>
+			<div class="column item">
+				<input name="item" type="text" value="" placeholder="Milk">
+			</div>
+			<div class="column quantity">
+				<input name="quantity" type="number" value="1">
+			</div>
+			<div class="column add-to-common">
+				<button name="add-to-common" type="button"> Add </button> 
+			</div>
+		</div>
+		<div class="row common-items">
+			<button name="show-common" type="button">Bookmarks </button> 
+		</div>
+	</div>
+	<div class="notes">
+		<p class="notes-label">
+			Notes: 
+		</p>
+		<input name="notes" type="text" value="">
+	</div>
+	<div class="last-removed">
+		<p class="last-removed-label">
+			Last removed 
+		</p>
+		<div class="removed-row removed-item">
+			<div class="removed-column item">
+				<input name="item" type="text" value="Milk">
+			</div>
+			<div class="removed-column undo">
+				<button name="undo" type="button"> undo </button> 
+			</div>
+		</div>
+	</div>
+</div>
+<script src="//code.jquery.com/jquery.min.js">
+</script>
+<script src="js/app.js">
+</script>
+</body>
+</html>
