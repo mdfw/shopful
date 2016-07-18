@@ -6,6 +6,7 @@ body {
 /* 	outline: red 1px solid; */
 }
 
+
 #holding-bag {
 	padding: 2em;
 	margin-top: 100px;
@@ -28,37 +29,52 @@ body {
     border: 8px solid #673AB7;
     border-bottom: 0;
     box-sizing: border-box;
-    margin-top: -120px;
+    margin-top: -110px;
     margin-bottom: 20px;
     	outline: pink 1px solid;
-
-    
 }
 
-.shopping-list {
+.title {
+ 	font-family: 'Arima Madurai', cursive;
+	text-align: center;
+	margin-top: -40px;
+	margin-bottom: 20px;
+	font-size: 30px;
+ 	width: 100%;
+}
+
+.list {
 	position: relative;
 	display:table;
 	width: 100%;
+    font-family: 'Cabin', sans-serif;
+    font-size: 20px;
 	
 	/* For testing */
 	outline: green 1px solid;
 
 }
 
-.row {
+.show-list-row, .row {
 	display: table;
 	position: relative;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
 	width: 100%;
-	height: 2em;
-	
 	/* For testing */
 	outline: rgba(0, 255, 255, 0.4) 1px solid;
-
 }
 
-.item .column {
+.show-list-row:hover {
+	color:slategrey;
+	text-decoration:line-through;
+}
+
+.item-button:hover {
+	text-decoration: line-through; 
+}
+
+.column {
 	position: relative;
 	float: left;
 	display:table-cell; 
@@ -66,38 +82,27 @@ body {
 	margin-left: 10px;
 }
 
-.item .checkbox .checky {
-	text-align: center;
-	height: 50px;
-	width: 50px;
-	background-color: red;
-
-	/* For testing */
-	outline: red 1px solid;
-
+.quantity {
+	width: 8%;
+	text-align: right;
 }
 
-.item .checkbox input[type="checkbox"] {
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.first-column {
-	width: 5%;
-	margin-left: auto;
-	margin-right: auto;
+.item {
+	width: 80%;
+	outline: blueviolet 1px solid;
 }
 	
-.add-item .column {
-	position: relative;
-	float: left;
-	width: 15%;
+.button-astext {
+    background:none;
+    border:none;
+    width:100%;
+    text-align:left;
+}
+
+.action-button {
+	background-color: #00BFA5;
 	}
 	
-.common-items {
-	float: right;
-}
-
 .notes {
 	padding-top: 250px;
 	position: relative;

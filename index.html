@@ -5,54 +5,51 @@
 	<title> Fascinating Shopping </title>
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Arima+Madurai" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+
 </head>
 <body>
 <div id="holding-bag">
 	<div id="handle"></div>
-	<div class="shopping-list">
+	<header class="title">Shopping</header>
+	<div class="shopping list">
 	
-		<div class="row item">
-			<div class="column checkbox first-column">
-				<input type="checkbox" name="gotit" class="checky" />
-			</div>
+		<div class="show-list-row">
 			<div class="column quantity">
-				<input name="quantity" type="number" value="1" min="0" max="99" size="3" />
+				<button name="checkoff" type="button" value="1" class="item-button button-astext">1 </button>
 			</div>
 			<div class="column item">
-				<input name="item" type="text" value="Milk">
+				<button name="checkoff" type="button" value="1" class="item-button button-astext">Milk Over the past year, I've found CSS triangles incredibly effective, especially when looking to create tooltips or design elements with a likewise pointer pattern. There's another common shape that's easy to create, and that is the circle. Using border-radius, you can create wonderful CSS circles.</button>
 			</div>
-			<div class="column delete .btn">
-				<button name="remove" type="button" class="btn"> Remove </button> 
+			<div class="column action">
 			</div>
 		</div>
 		
-		<div class="row item">
-			<div class="column first-column">
-				<input type="checkbox" name="gotit" checked="checked" class="checkbox" />
-			</div>
+		<div class=show-list-row">
 			<div class="column quantity">
-				<input name="quantity" type="number" value="2" min="0" max="99" size="3" >
+				<button name="checkoff" type="button" value="3" class="item-button button-astext">3 </button>
 			</div>
 			<div class="column item">
-				<input name="item" type="text" value="Grapes">
+				<button name="checkoff" type="button" value="Grape" class="item-button button-astext">Grape</button>
 			</div>
-			<div class="column delete">
-				<button name="remove" type="button"> Remove </button> 
+			<div class="column action">
 			</div>
+
 		</div>
+				
+	</div>
+	<div class="edit list">
 		
 		<div class="row add-item">
-			<div class="column first-column add-item-label">
-				+> 
-			</div>
 			<div class="column quantity">
-				<input name="quantity" type="number" value="1">
+				<input name="quantity" type="number" value="1" label="add" \>
 			</div>
 			<div class="column item">
 				<input name="item" type="text" value="" placeholder="Milk">
 			</div>
-			<div class="column add-to-common">
-				<button name="add-to-common" type="button"> Add </button> 
+			<div class="column action">
+				<button name="add-to-common" type="button" class="action-button"> Add </button> 
 			</div>
 		</div>
 	</div>
