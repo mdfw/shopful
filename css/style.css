@@ -7,18 +7,38 @@ body {
 }
 
 #holding-bag {
-	padding: 3em;
-	margin: 3em;
-	
-	/* 	For testing */
-	outline: lightgrey 1px solid;
+	padding: 2em;
+	margin-top: 100px;
+	margin-left: 3em;
+	margin-right: 3em;
+	margin-bottom:3em;
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	border-style: solid;
+  	border: 5px solid #673AB7;
+}
+
+#handle {
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 100px;
+    /* background-color: gold; */
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    border: 8px solid #673AB7;
+    border-bottom: 0;
+    box-sizing: border-box;
+    margin-top: -120px;
+    margin-bottom: 20px;
+    	outline: pink 1px solid;
+
+    
 }
 
 .shopping-list {
 	position: relative;
 	display:table;
 	width: 100%;
-	padding-top: 50px;
 	
 	/* For testing */
 	outline: green 1px solid;
@@ -46,10 +66,13 @@ body {
 	margin-left: 10px;
 }
 
-.item .checkbox {
+.item .checkbox .checky {
 	text-align: center;
-	height: 1.5em;
+	height: 50px;
+	width: 50px;
+	background-color: red;
 
+	/* For testing */
 	outline: red 1px solid;
 
 }
@@ -79,3 +102,4 @@ body {
 	padding-top: 250px;
 	position: relative;
 }
+
