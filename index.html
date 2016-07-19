@@ -6,61 +6,68 @@
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Arima+Madurai" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
-
+	<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
 </head>
 <body>
 <div id="holding-bag">
-	<div id="handle"></div>
-	<header class="title">Shopping</header>
+	<div id="handle">
+	</div>
+	<header class="title">
+		Shopful
+	</header>
 	<div class="shopping list">
-	
+			<form action="" method="GET" name="add-an-item">
+				<div class="row add-item">
+					<div class="column quantity">
+						<input name="quantity" type="number" value="1" size="2" label="add quantity" class="quantity-input input-box" \>
+					</div>
+					<div class="column item-new">
+						<input name="item" type="text" value="" placeholder="Milk" class="item-input input-box">
+					</div>
+					<div class="column action">
+						<button name="add-to-common" type="button" class="action-button"> Add </button> 
+					</div>
+				</div>
+			</form>
+		<div class="show-list-row" role="button">
+			<div class="column quantity">
+				<button name="checkoff" type="button" value="1" class="quantity-button button-astext">1</button> 
+			</div>
+			<div class="column item">
+				<button name="checkoff" type="button" value="1" class="item-button button-astext">Milk Over the past year, I've found CSS triangles incredibly effective, especially when looking to create tooltips or design elements with a likewise pointer pattern. There's another common shape that's easy to create, and that is the circle. Using border-radius, you can create wonderful CSS circles.</button> 
+			</div>
+			<div class="column action">
+			</div>
+		</div>
 		<div class="show-list-row">
 			<div class="column quantity">
-				<button name="checkoff" type="button" value="1" class="item-button button-astext">1 </button>
+				<button name="checkoff" type="button" value="3" class="quantity-button button-astext">3 </button> 
 			</div>
 			<div class="column item">
-				<button name="checkoff" type="button" value="1" class="item-button button-astext">Milk Over the past year, I've found CSS triangles incredibly effective, especially when looking to create tooltips or design elements with a likewise pointer pattern. There's another common shape that's easy to create, and that is the circle. Using border-radius, you can create wonderful CSS circles.</button>
+				<button name="checkoff" type="button" value="Grape" class="item-button button-astext">Grape</button> 
 			</div>
 			<div class="column action">
 			</div>
 		</div>
-		
-		<div class=show-list-row">
-			<div class="column quantity">
-				<button name="checkoff" type="button" value="3" class="item-button button-astext">3 </button>
+		<div class="edit-row row">
+			<div class="column action edit">
+				<button name="edit-pop" type="button" class="action-button"> Edit </button> 
 			</div>
-			<div class="column item">
-				<button name="checkoff" type="button" value="Grape" class="item-button button-astext">Grape</button>
-			</div>
-			<div class="column action">
-			</div>
+		</div>	</div>
 
-		</div>
-				
-	</div>
-	<div class="edit list">
-		
-		<div class="row add-item">
-			<div class="column quantity">
-				<input name="quantity" type="number" value="1" label="add" \>
-			</div>
-			<div class="column item">
-				<input name="item" type="text" value="" placeholder="Milk">
-			</div>
-			<div class="column action">
-				<button name="add-to-common" type="button" class="action-button"> Add </button> 
-			</div>
-		</div>
-	</div>
-<!-- 
 	<div class="notes">
-		<p class="notes-label">
+			<div class="column quantity">
+
+		<label for="notes" class="notes-label">
 			Notes: 
-		</p>
-		<input name="notes" type="text" value="">
+		</label>
+		</div>
+							<div class="column item">
+
+		<textarea name="notes" cols="40" rows="5" class="notes-input input-box"></textarea>
+		</div>
 	</div>
-	<div class="last-removed">
+<!-- 	<div class="last-removed">
 		<p class="last-removed-label">
 			Last removed 
 		</p>
@@ -74,9 +81,18 @@
 		</div>
 	</div>
  -->
+ 
+ <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
 </div>
-<script src="//code.jquery.com/jquery.min.js">
-</script>
+
+
+</div>
 <script src="js/app.js">
 </script>
 </body>
