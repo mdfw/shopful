@@ -68,6 +68,10 @@ body {
 	/* outline: rgba(0, 255, 255, 0.4) 1px solid; */
 }
 
+.show-list-row-prototype {
+	display: none;
+}
+
 .show-list-row:hover {
 	box-shadow: 0 0 1pt 1pt #d4d3ef;
 	border-radius: 15px;
@@ -86,7 +90,6 @@ body {
 .item {
 	border-bottom: dotted lightgrey 1px;
 	width: 80%;
-
 }	
 
 .column {
@@ -115,10 +118,9 @@ body {
 	width: 100%;
 	text-align: right;
 }
-	
+
 .item-new {
 	width: 75%;
-	/*outline: blueviolet 1px solid;*/
 }
 
 .item-input {
@@ -128,6 +130,14 @@ body {
 
 .input-box:focus {
 	outline: #42A377 1px solid;
+}
+
+.input-error {
+	outline: #903f3a 1px dotted;
+}
+.input-error:focus {
+	outline: #903f3a 2px dotted;
+
 }
 
 .button-astext {
@@ -142,7 +152,7 @@ body {
 }
 
 .action-button {
-  	background: #3498db;
+  	background: #42A377;
   	background-image: linear-gradient(to bottom, #42A377, #4ec08d);
   	border-radius: 20px;
 	font-family: 'Cabin', sans-serif;
@@ -157,28 +167,23 @@ body {
 	 outline: none;
 }
 
-.action-button:hover {
-  	background: #3498db;
+.action-button:hover, .action-button:focus {
+  	background: #4ec08d;
   	background-image: linear-gradient(to bottom, #4ec08d, #68c99e);
   	text-decoration: none;
 }
 
+.action-button:disabled {
+  	background: #a6dfc6;
+  	background-image: linear-gradient(to bottom, #a6dfc6, #d2efe2);
+  	text-decoration: none;
+  	color: #edf8f3;
+}
 
 .edit-row {
 	text-align: center;
 }
 
-.longpress {
-	transition-property: outline, border-color, border-width, border-radius;
-    transition-duration: 300ms;
-    transition-timing-function: linear;
-    border-color: #c0544e;
-	border-width: 2px;
-	border-style: solid;
-	border-radius: 10px;
-
-    }
-    
 .notes {
 	position: relative;
 	padding-top: 3em;
@@ -193,3 +198,10 @@ body {
 	width: 100%;	
 }
 	
+	
+.shopful-footer {
+	color: #333399;
+	font-family: 'Cabin', sans-serif;
+    font-size: 15px;
+	text-align: center;
+}

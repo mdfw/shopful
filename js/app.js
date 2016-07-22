@@ -1,13 +1,16 @@
+var shopfulready = false;
+
 $(document).ready(function() {
 	loadNotes();
+	loadItems();
 	$(".item-input").focus();
 
    	$( "#add-an-item" ).submit(function( event ) {
   		addItem(event);
   		event.preventDefault();
 	})
-	$("#checkoff").click(function(event) {
-	  	checkoffTriggered(event);
+	$(".checkoff-trigger").click(function(event) {
+	  	checkoffEventTriggered(event);
   		event.preventDefault();
 	})
 	$(".quantity-button").focus(function(event) {
@@ -19,40 +22,83 @@ $(document).ready(function() {
 	$('#notes-text').bind('input propertychange', function() {
   		storeNotes();
 	})
+	shopfulready = true;
 	watchForCleanupPresses($('#cleanup'));
+	validateClearButton();
 });
 
 function addItem (event) {
 	var quantity = $(".quantity-input").val();
-  	if( !quantity || !$(".item-input").val() ) {
+  	if( !quantity) {
   	  	beep();
+  	  	$(".quantity-input").addClass("input-error");
+  	  	setTimeout(function() {
+  	  		$(".quantity-input").removeClass("input-error");
+  	  	}, 2000);
+  	  	$(".quantity-input").focus();
   	  	return;
     } 
-    var newitem = newListRow($(".quantity-input").val(), $(".item-input").val());
-    $("#checkoff").append(newitem);
+    var itemDesc = $(".item-input").val() ;
+  	if( !itemDesc ) {
+  	  	beep();
+  	  	$(".item-input").addClass("input-error");
+  	  	setTimeout(function() {
+  	  		$(".item-input").removeClass("input-error");
+  	  	}, 2000);
+  	  	$(".item-input").focus();
+  	  	return;
+    } 
+    $(".item-input").removeClass("input-error");
+  	$(".quantity-input").removeClass("input-error");
+
+    /*var newitem = newListRow($(".quantity-input").val(), $(".item-input").val());*/
+    var newitem = newListRow(quantity, itemDesc, false);
+    addItemRowToList(newitem, 200);
     $(".item-input").val("");
     $(".item-input").focus();
     saveItems();
 }
 
-function newListRow (quantity, item) {
-	var start = "<div class=\"show-list-row \" role=\"button\"><div class=\"column quantity\"><button type=\"submit\" class=\"quantity-button button-astext\" >";
-	var middle = "</button></div><div class=\"column item\"><button type=\"submit\" class=\"item-button button-astext\">";
-	var end = "</button> </div><div class=\"column action\"></div></div>";
-	var full = start + quantity + middle + item + end;
-	return full;
+function onboard() {
+	addItemRowToList(newListRow(1, "Milk", false), 300);
+	addItemRowToList(newListRow("3", "Asparagus", true), 300);
 }
 
+function newListRow (quantity, itemDesc, checked) {
+	var newItem = $(".show-list-row-prototype").clone();
+	if (checked) {
+		newItem.addClass("acquired");
+	}
+	var count = $(".shopping-list").children().length + 1;
+	newItem.find(".quantity-button").text(quantity);
+	newItem.find(".item-button").text(itemDesc);
+	newItem.find("#checkoff").attr("id","#checkoff"+count);
+	newItem.removeClass("show-list-row-prototype");
+	return newItem;
+}	
+
+function addItemRowToList (row, fadedelay) {
+	row.hide()
+	var whereRowsGo = $(".shopping-list")
+	whereRowsGo.append(row);
+	row.fadeIn(fadedelay);
+}
 	
-function checkoffTriggered (event) {
+function checkoffEventTriggered (event) {
  	var target = $( event.target );
- 	var showListRow = target.parents().filter(".show-list-row");
+	checkoffTriggeredOn(target);
+}
+
+function checkoffTriggeredOn(target) {
+ 	var target = $( target );
+ 	var showListRow = target.parents().filter(".show-list-row"); 	
  	if (showListRow && showListRow.hasClass("acquired")) {
  		showListRow.removeClass("acquired");
  	} else if (showListRow) {
  		showListRow.addClass("acquired");
  	} 
  	target.blur();
+ 	saveItems();
 }
 
 function checkoffButtonFocused (event) {
@@ -68,16 +114,21 @@ function checkoffButtonBlurred (event) {
 }
 
 function storeNotes () {
+	if (typeof(Storage) == "undefined") {
+    	return;
+	}
+	
 	var notes = $('#notes-text').val();
 	if (!notes) {
 		localStorage.removeItem("shopful.notes");
 	}
-	if (typeof(Storage) !== "undefined") {
-    	localStorage.setItem("shopful.notes", notes);
-	}
+    localStorage.setItem("shopful.notes", notes);
 }
 
 function loadNotes () {
+	if (typeof(Storage) == "undefined") {
+    	return;
+	}
 	var notes = localStorage.getItem("shopful.notes");
 	if (notes) {
 		$('#notes-text').val(notes);
@@ -85,29 +136,92 @@ function loadNotes () {
 }
 
 function saveItems () {
-	var itemRows = $("#checkoff").children();
-	var x = 1;
-	for (item in itemRows) {
-		console.log("here: " + x + "  " + $(item));
-		var quant = $(item).children("quantity-button").val();
-		var itemDesc = $(item).children("item-button").val();
-		console.log("quant: " + quant + "item: " + itemDesc);
-		x = x + 1;
+	if (!shopfulready) {
+		return;
+	}
+	validateClearButton();
+	if (typeof(Storage) == "undefined") {
+    	return;
+	}
+	var itemRows = $(".show-list-row").not(".show-list-holder").not(".show-list-row-prototype");
+	if (!itemRows || itemRows.length == 0) {
+		localStorage.removeItem("shopful.items");
+		return;
+	}
+	
+	var items = [];
+	itemRows.each(function(element) {
+		var item = $(this);
+		var quant = item.find(".quantity-button").text();
+		var itemDesc = item.find(".item-button").text();
+		var checked = item.hasClass("acquired");
+		var itemObj = {quant:quant, item:itemDesc, checked:checked};
+		items.push(itemObj);
+	})
+	localStorage.setItem("shopful.items", JSON.stringify(items));
+}
+
+function loadItems () {
+	if (typeof(Storage) == "undefined") {
+    	return;
+	}
+	var items = JSON.parse(localStorage.getItem("shopful.items"));
+	if (!items || items.length == 0) {
+		onboard();
+		return;
+	}
+	items.forEach(function(entitity) {
+		var quantity = entitity.quant;
+		var desc = entitity.item;
+		var checked = entitity.checked;
+		var newItem = newListRow(quantity, desc, checked);
+		addItemRowToList(newItem, 100);
+	})
+}
+
+/* Cleanup button actions */
+function validateClearButton() {
+	var itemRows = $(".show-list-row").not(".show-list-holder").not(".show-list-row-prototype");
+
+	if (itemRows.length == 0) {
+		$('#cleanup')[0].disabled = true;
+		$('#cleanup').addClass("bob");
+		return;
+	}
+	$('#cleanup')[0].disabled = false;
+	var nonCheckedRows = itemRows.not(".acquired");
+	if (nonCheckedRows.length == itemRows.length) {
+		$('#cleanup').text("Hold to clear list");
+	} else {
+		$('#cleanup').text("Cleanup (hold to clear)");
 	}
 }
-/* Cleanup button actions */
 
-function clearList () {
-	console.log('clearing');
-	$("#checkoff").children().remove();
+function clearList (fadeTime) {
+	if (!fadeTime) {
+		fadeTime = 300;
+	}
+	var listToClean = $(".shopping-list").children().not(".show-list-holder");
+	listToClean.fadeOut(fadeTime);
+	setTimeout(function() {
+		listToClean.remove();
+		saveItems();
+	}, 300);
 }
 
 function cleanupList() {
-	$("#checkoff").children(".acquired").remove();
+	var listToClean = $(".shopping-list").children(".acquired").not(".show-list-holder");
+	listToClean.fadeOut(300);
+	setTimeout(function() {
+		listToClean.remove();
+		saveItems();
+	}, 300);
 }
 
 var longpress = false;
 var presstimer = null;
+var pressintervaltimer = null;
+var pressintervalnumber = null;
 var longtarget = null;
 
 function watchForCleanupPresses (element) {
@@ -117,14 +231,15 @@ function watchForCleanupPresses (element) {
 			return;
 		}
 		longpress = false;
+		longpressCountdownStart();
 		this.classList.add("longpress");
 	
 		presstimer = setTimeout(function() {
-			node.remove("longpress");
+			node.removeClass("longpress");
 			clearList();
-			longpress = true;
-		}, 750);
-	
+			longpress = false;
+			longpressCountdownStop();
+		}, 1200);
 		return false;
 	})
 	node.on("mouseout touchend touchleave touchcancel", function(e) {
@@ -132,8 +247,9 @@ function watchForCleanupPresses (element) {
 			clearTimeout(presstimer);
 			presstimer = null;
 		}
-	
+
 		this.classList.remove("longpress");
+		longpressCountdownStop();
 	})
 	
 	/* Click event */
@@ -149,9 +265,41 @@ function watchForCleanupPresses (element) {
 			return false;
 		}
 		cleanupList();
+		longpressCountdownStop();
 	})
 }
 
+function longpressCountdownStart() {
+	pressintervalnumber = 5;
+	longpressCountdownStep();
+	pressintervaltimer = setInterval(function() {
+		longpressCountdownStep();
+	}, 250);
+}
+
+function longpressCountdownStop() {
+	if (pressintervaltimer) {
+		clearInterval(pressintervaltimer);
+		pressintervaltimer = null;
+	}
+	$("#cleanup-timer").text("");
+	validateClearButton();
+}
+
+function longpressCountdownStep() {
+	if (presstimer) {
+		pressintervalnumber = pressintervalnumber - 1;
+		if (pressintervalnumber < -2) {
+			longpressCountdownStop();
+		} else if (pressintervalnumber < 1) {
+			 $("#cleanup").text("Clearing...");
+		} else {
+			$("#cleanup").text("Clearing in " + pressintervalnumber);
+		}	
+	} else {
+		longpressCountdownStop();
+	}
+}
 
 
 /* BEEP */

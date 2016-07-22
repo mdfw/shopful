@@ -28,23 +28,13 @@
 				</div>
 			</div>
 		</form>
-	<div class="shopping list">
-		<form action="" method="GET" id="checkoff">
-		<div class="show-list-row " role="button">
-			<div class="column quantity">
-				<button type="submit" class="quantity-button button-astext" >1</button> 
-			</div>
-			<div class="column item">
-				<button type="submit" class="item-button button-astext">Milk</button> 
-			</div>
-			<div class="column action">
-			</div>
-		</div>
-		</form>
+	
+	<div class="shopping list shopping-list">
+		<div class="show-list-holder"></div>
 	</div>
 	
 	<div class="edit-row row">
-			<button id="cleanup" type="button" class="action-button"> Cleanup (hold to clear) </button> 
+			<button id="cleanup" type="button" class="action-button"> Cleanup (hold to clear) </button>
 	</div>
 
 	
@@ -57,6 +47,22 @@
 		</div>
 	</div>
 </div>
+
+		<div class="show-list-row show-list-row-prototype" role="button">
+			<form action="#" onsubmit="return checkoffTriggeredOn(this);" method="GET" id="checkoff" class="checkoff-trigger">
+			<div class="column quantity">
+				<button type="submit" class="quantity-button button-astext" >1</button> 
+			</div>
+			<div class="column item">
+				<button type="submit" class="item-button button-astext">Milk</button> 
+			</div>
+			<div class="column action">
+			</div>
+			</form>
+		</div>
+
+<footer class="shopful-footer">Copyright &copy; 2016 Mark Williams</footer>
+
 <script src="js/jquery-2.2.4.js">
 </script>
 <script src="js/app.js">
