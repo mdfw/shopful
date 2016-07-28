@@ -15,22 +15,24 @@
 	<header class="title">
 		Shopful 
 	</header>
-		<form action="" method="GET" id="add-an-item" class="list">
+		<form action="" method="GET" id="add-an-item" class="list" label="Add an item form">
 			<div class="row add-item">
 				<div class="column quantity">
-					<input name="quantity" type="text" value="1" size="2" label="add quantity" class="quantity-input input-box" \>
+					<label id="quantity-label" for="quantity-field" style="display: none">Quantity</label>
+					<input id="quantity-field" name="quantity" type="text" value="1" size="2" aria-labelledby="quantity-label" aria-required="true" class="quantity-input input-box" \>
 				</div>
 				<div class="column item-new">
-					<input name="item" type="text" value="" placeholder="Milk" class="item-input input-box">
+					<label id="item-description-label" for="item-description" style="display: none">Item description</label>
+					<input id="item-description" name="item" type="text" value="" placeholder="Milk" aria-labelledby="item-description-label" aria-required="true" class="item-input input-box">
 				</div>
 				<div class="column action">
-					<button name="add-to-common" type="submit" class="action-button"> Add </button> 
+					<button id="add-button" name="add-to-common" type="submit" title="Add item" class="action-button" disabled> Add </button> 
 				</div>
 			</div>
 		</form>
 	
-	<div class="shopping list shopping-list">
-		<div class="show-list-holder"></div>
+	<div class="shopping list shopping-list" aria-live="assertive" aria-atomic="true" aria-relevant="additions removals text">
+		<div id="shopping-list-label">The list</div>
 	</div>
 	
 	<div class="edit-row row">
@@ -38,28 +40,27 @@
 	</div>
 
 	
-	<div class="notes">
-		<div class="column quantity">
-			<label for="notes" class="notes-label"> Notes: </label> 
+	<div id="notes-area">
+		<div id="notes-label">
+			<label for="notes-text" id="notes-label"> Notes </label> 
 		</div>
-		<div class="column item">
+		<div>
 			<textarea id="notes-text" cols="40" rows="5" class="notes-input input-box"></textarea>
 		</div>
 	</div>
 </div>
 
-		<div class="show-list-row show-list-row-prototype" role="button">
-			<form action="#" onsubmit="return checkoffTriggeredOn(this);" method="GET" id="checkoff" class="checkoff-trigger">
-			<div class="column quantity">
-				<button type="submit" class="quantity-button button-astext" >1</button> 
-			</div>
-			<div class="column item">
-				<button type="submit" class="item-button button-astext">Milk</button> 
-			</div>
-			<div class="column action">
-			</div>
-			</form>
-		</div>
+<div class="show-list-row show-list-row-prototype" role="button" hidden>
+	<form action="#" onsubmit="return checkoffTriggeredOn(this);" method="GET" id="checkoff" class="checkoff-trigger">
+	<div class="column quantity">
+		<button type="submit" class="quantity-button button-astext" >1</button> 
+	</div>
+	<div class="column item">
+		<button type="submit" class="item-button button-astext">Milk</button> 
+	</div>
+	<div class="hidden-for-screenreaders checked-screenreaders" aria-live="assertive" aria-atomic="true" aria-relevant="all"></div>
+	</form>
+</div>
 
 <footer class="shopful-footer">Copyright &copy; 2016 Mark Williams</footer>
 

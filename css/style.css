@@ -3,7 +3,7 @@ body {
 }
 
 * {
-/* 	outline: red 1px solid; */
+ 	/*outline: red 1px solid; */
 }
 
 .superRedOutline {
@@ -47,6 +47,12 @@ body {
  	width: 100%;
 }
 	
+#shopping-list-label {
+ 	font-family: 'Arima Madurai', cursive;
+	padding-left: 11%;
+	font-size: 15px;
+}
+
 .list {
 	position: relative;
 	display:table;
@@ -66,6 +72,13 @@ body {
 	width: 100%;
 	/* For testing */
 	/* outline: rgba(0, 255, 255, 0.4) 1px solid; */
+}
+.hidden-for-screenreaders {
+	position:absolute;
+	left:-10000px;
+	width: 1px;
+	height: 1px;
+	overflow:hidden;
 }
 
 .show-list-row-prototype {
@@ -89,7 +102,7 @@ body {
 
 .item {
 	border-bottom: dotted lightgrey 1px;
-	width: 80%;
+	width: 88%;
 }	
 
 .column {
@@ -135,9 +148,9 @@ body {
 .input-error {
 	outline: #903f3a 1px dotted;
 }
+
 .input-error:focus {
 	outline: #903f3a 2px dotted;
-
 }
 
 .button-astext {
@@ -184,24 +197,31 @@ body {
 	text-align: center;
 }
 
-.notes {
+#notes-area {
+    font-size: 20px;
 	position: relative;
-	padding-top: 3em;
+	margin-left: 10px;
+	padding-top: 2em;
 	padding-bottom: 0.5em;
-	width: 100%;
+	padding-left: 10%;
+}
+
+#notes-label {
+ 	font-family: 'Arima Madurai', cursive;
+	font-size: 15px;
+ 	position:relative;
+}	
+
+#notes-text {
 	font-family: 'Cabin', sans-serif;
     font-size: 20px;
-
+    width: 80%
 }
 
-.notes-input {
-	width: 100%;	
-}
-	
 	
 .shopful-footer {
 	color: #333399;
-	font-family: 'Cabin', sans-serif;
-    font-size: 15px;
+ 	font-family: 'Arima Madurai', cursive;
+	font-size: 0.75em;
 	text-align: center;
 }
