@@ -30,5 +30,5 @@ https://mdfw.github.io/shopful
 
 ### Screenshot
 
-![search](https://github.com/mdfw/shopful/blob/master/readme/shopful_screenshot.png "Shopful screen")
+![search](https://github.com/mdfw/shopful/blob/gh-pages/readme/shopful_screenshot.png "Shopful screen")
 
