@@ -4,7 +4,7 @@ Thinkful shopping list project with aria accessibility during updates.
 
 ## Purpose
 
-Build a shopping list using jquery. 
+Build a shopping list using jQuery. 
 
 ## Example
 
@@ -17,6 +17,8 @@ https://mdfw.github.io/shopful
 
 ### Technologies
 
+* jQuery
+
 #### Languages
 
 * Front-end: Javascript (ES6)
@@ -26,16 +28,7 @@ https://mdfw.github.io/shopful
 * jQuery
 
 
-### Screenshots
+### Screenshot
 
-*The Search page:*
+![search](https://github.com/mdfw/shopful/blob/master/readme/shopful_screenshot.png "Shopful screen")
 
-![search](https://github.com/mdfw/wikiwalkback/blob/master/readme/wikiwalkback-search.png "Search screen")
-
-*Search results top:*
-
-![results 1](https://github.com/mdfw/wikiwalkback/blob/master/readme/wikiwalkback-result1.png "Search result top")
-
-*Search results bottom:*
-
-![results2](https://github.com/mdfw/wikiwalkback/blob/master/readme/wikiwalkback-result2.png "Search result bottom")
